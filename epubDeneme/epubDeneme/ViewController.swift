@@ -10,84 +10,186 @@ import UIKit
 import FolioReaderKit
 
 class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     @IBOutlet weak var cView: UICollectionView!
     @IBOutlet weak var cView2: UICollectionView!
     @IBOutlet weak var cView3: UICollectionView!
+    let folioReader = FolioReader()
     
-        var burak = ["https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://www.booktopia.com.au/blog/wp-content/uploads/2018/12/the-arsonist.jpg","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217"]
-        override func viewDidLoad() {
-            
-            super.viewDidLoad()
-
-        }
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            
-            if (collectionView == cView2){
-                return burak.count
-            }
-            if (collectionView == cView3){
-                return burak.count
-            }
-            return burak.count
-        }
-        @objc func doubleTapped(_ sender: AnyObject) {
-                   if let url = URL(string: "https://www.hackingwithswift.com") {
-                       UIApplication.shared.open(url)
-                   }
-               }
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            
-            let tap =  UITapGestureRecognizer(target: self, action: #selector(doubleTapped(_:)))
-            cView.addGestureRecognizer(tap)
-           
-            
-            let cell = cView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-            cell.backgroundColor = UIColor.white
-            
-            //  cell.img.image = UIImage(named: burak[indexPath.row])
-            //URL Üzerinden image açmak.
-            do {
-                let url = URL(string: burak[indexPath.row])
-                let data = try Data(contentsOf: url!)
-                cell.image1.image = UIImage(data: data)
-            }
-            catch{
-                print("URL'den resim get edilemedi")
-            }
-            
-            if (collectionView == cView2){
-                let cell2 = cView2.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! CollectionViewCell2
-                cell2.backgroundColor = UIColor.white
-                do {
-                    let url = URL(string: burak[indexPath.row])
-                    let data = try Data(contentsOf: url!)
-                    cell2.image2.image = UIImage(data: data)
-                }
-                catch{
-                    print("URL'den resim get edilemedi")
-                }
-                return cell2
-            }
-            
-            if (collectionView == cView3){
-                let cell3 = cView3.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! CollectionViewCell3
-                cell3.backgroundColor = UIColor.white
-                do {
-                    let url = URL(string: burak[indexPath.row])
-                    let data = try Data(contentsOf: url!)
-                    cell3.image3.image = UIImage(data: data)
-                }
-                catch{
-                    print("URL'den resim get edilemedi")
-                }
-                return cell3
-                
-            }
-            
-            return cell
-        }
+    var burak : [String] = ["https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://www.booktopia.com.au/blog/wp-content/uploads/2018/12/the-arsonist.jpg","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217"]
+    var kitap :[String] = ["http://e-kitaplik.net/api/kitap/epub/1","http://e-kitaplik.net/api/kitap/epub/3","http://e-kitaplik.net/api/kitap/epub/5","http://e-kitaplik.net/api/kitap/epub/7","http://e-kitaplik.net/api/kitap/epub/9","http://e-kitaplik.net/api/kitap/epub/11","http://e-kitaplik.net/api/kitap/epub/13","http://e-kitaplik.net/api/kitap/epub/15","http://e-kitaplik.net/api/kitap/epub/17","http://e-kitaplik.net/api/kitap/epub/10","http://e-kitaplik.net/api/kitap/epub/11","http://e-kitaplik.net/api/kitap/epub/12","http://e-kitaplik.net/api/kitap/epub/13","http://e-kitaplik.net/api/kitap/epub/14"]
+    override func viewDidLoad() {
+        bookAddress()
+        super.viewDidLoad()
         
     }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if (collectionView == cView2){
+            return burak.count
+        }
+        if (collectionView == cView3){
+            return burak.count
+        }
+        return burak.count
+    }
+    func showSavedEpub( fileName:String) {
+        if #available(iOS 10.0, *) {
+            do {
+                let docURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+                let contents = try FileManager.default.contentsOfDirectory(at: docURL, includingPropertiesForKeys: [.fileResourceTypeKey], options: .skipsHiddenFiles)
+                for url in contents {
+                    if url.description.contains(fileName) {
+                        // its your file! do what you want with it!
+                        self.open(bookPath: url.path)
+                        break
+                    }
+                }
+            } catch {
+                print("could not locate epub file !!!!!!!")
+            }
+        }
+    }
+    func open(bookPath:String) {
+        let config = FolioReaderConfig()
+        config.shouldHideNavigationOnTap = true
+        config.scrollDirection = .horizontal
+        let folioReader = FolioReader()
+        folioReader.presentReader(parentViewController: self, withEpubPath: bookPath, andConfig: config)
+    }
+    
+    //    Download
+    func doubleTapped(abc : Int) {
+        if let fileUrl = URL(string: kitap[abc]) {
+            
+            //    self.indicatorView?.startAnimating()
+            // then lets create your document folder url
+            let documentsDirectoryURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            
+            // lets create your destination file url
+            let destinationUrl = documentsDirectoryURL.appendingPathComponent(fileUrl.lastPathComponent+".epub")
+            print(destinationUrl)
+            
+            // to check if it exists before downloading it
+            if FileManager.default.fileExists(atPath: destinationUrl.path) {
+                //       self.indicatorView?.stopAnimating()
+                print("The file already exists at path")
+                // if the file doesn't exist
+                DispatchQueue.main.async {
+                    self.showSavedEpub(fileName:destinationUrl.lastPathComponent)
+                }
+            } else {
+                
+                // you can use NSURLSession.sharedSession to download the data asynchronously
+                URLSession.shared.downloadTask(with: fileUrl) { location, response, error in
+                    guard let location = location, error == nil else { return }
+                    do {
+                        // after downloading your file you need to move it to your destination url
+                        try FileManager.default.moveItem(at: location, to: destinationUrl)
+                        print("DOWNLOAD COMPLETED: File moved to documents folder")
+                        
+                        DispatchQueue.main.async {
+                            //              self.indicatorView?.stopAnimating()
+                            self.showSavedEpub(fileName:destinationUrl.lastPathComponent)
+                        }
+                        
+                    } catch {
+                        print(error)
+                    }
+                }.resume()
+            }
+        }
+    }
+    
+    
+    func downloadImage(with url : URL){
+        URLSession.shared.dataTask(with: url){
+            (data,response,error) in
+            if error != nil{
+                print("error")
+                return
+            }
+            DispatchQueue.main.async {
+                
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = cView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
+        cell.backgroundColor = UIColor.white
+        
+        //URL Üzerinden image açmak.
+        let url = URL(string: burak[indexPath.row])
+        URLSession.shared.dataTask(with: url!){
+            (data,response,error) in
+            if error != nil{
+                print("error")
+                return
+            }
+            DispatchQueue.main.async {
+                cell.image1.image = UIImage(data : data!)
+            }
+        }.resume()
+        
+        if (collectionView == cView2){
+            let cell2 = cView2.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! CollectionViewCell2
+            cell2.backgroundColor = UIColor.white
+            
+            //URL Üzerinden image açmak.
+            let url = URL(string: burak[indexPath.row])
+            URLSession.shared.dataTask(with: url!){
+                (data,response,error) in
+                if error != nil{
+                    print("error")
+                    return
+                }
+                DispatchQueue.main.async {
+                    cell2.image2.image = UIImage(data : data!)
+                }
+            }.resume()
+            return cell2
+        }
+        
+        if (collectionView == cView3){
+            let cell3 = cView3.dequeueReusableCell(withReuseIdentifier: "cell3", for: indexPath) as! CollectionViewCell3
+            cell3.backgroundColor = UIColor.white
+            
+            //URL Üzerinden image açmak.
+            let url = URL(string: burak[indexPath.row])
+            URLSession.shared.dataTask(with: url!){
+                (data,response,error) in
+                if error != nil{
+                    print("error")
+                    return
+                }
+                DispatchQueue.main.async {
+                    cell3.image3.image = UIImage(data : data!)
+                }
+            }.resume()
+            return cell3
+            
+        }
+        
+        return cell
+    }
+    
+    //    Seçili hücreye tıklandığında olacaklar.
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if (collectionView == cView){
+            doubleTapped(abc: indexPath.item)
+        }
+        
+        if (collectionView == cView2){
+            doubleTapped(abc: indexPath.item)
+        }
+        
+        if (collectionView == cView3){
+            doubleTapped(abc: indexPath.item)
+        }
+    }
+    
+}
