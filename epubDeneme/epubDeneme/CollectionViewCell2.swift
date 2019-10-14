@@ -12,6 +12,6 @@ class CollectionViewCell2: UICollectionViewCell {
     @IBOutlet weak var image2: UIImageView!
     
     override func awakeFromNib() {
-        self.image2.layer.cornerRadius = 20
+        self.image2.layer.cornerRadius = 15
     }
 }

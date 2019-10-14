@@ -19,12 +19,16 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
     let folioReader = FolioReader()
     
     var burak : [String] = ["https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://www.booktopia.com.au/blog/wp-content/uploads/2018/12/the-arsonist.jpg","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217"]
-    var kitap :[String] = ["http://e-kitaplik.net/api/kitap/epub/1","http://e-kitaplik.net/api/kitap/epub/3","http://e-kitaplik.net/api/kitap/epub/5","http://e-kitaplik.net/api/kitap/epub/7","http://e-kitaplik.net/api/kitap/epub/9","http://e-kitaplik.net/api/kitap/epub/11","http://e-kitaplik.net/api/kitap/epub/13","http://e-kitaplik.net/api/kitap/epub/15","http://e-kitaplik.net/api/kitap/epub/17","http://e-kitaplik.net/api/kitap/epub/10","http://e-kitaplik.net/api/kitap/epub/11","http://e-kitaplik.net/api/kitap/epub/12","http://e-kitaplik.net/api/kitap/epub/13","http://e-kitaplik.net/api/kitap/epub/14"]
+    
+    let kitapApi : String = "http://e-kitaplik.net/api/kitap/epub/"
+    let kitapResim : String = "http://e-kitaplik.net/api/kitap/cover/"
+    
     override func viewDidLoad() {
-        bookAddress()
         super.viewDidLoad()
         
     }
+    
+    //    Her bir collection View içinde kaçar tane veri olduğunu belirtiyor.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if (collectionView == cView2){
@@ -60,9 +64,12 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
         folioReader.presentReader(parentViewController: self, withEpubPath: bookPath, andConfig: config)
     }
     
+    
     //    Download
     func doubleTapped(abc : Int) {
-        if let fileUrl = URL(string: kitap[abc]) {
+        
+        let abcd = String(abc) // indexPath.item ' ı kitapApi'sinin sonuna ekliyorum. URL olarak veriyorum.
+        if let fileUrl = URL(string: kitapApi + abcd) {
             
             //    self.indicatorView?.startAnimating()
             // then lets create your document folder url
@@ -102,28 +109,14 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
             }
         }
     }
-    
-    
-    func downloadImage(with url : URL){
-        URLSession.shared.dataTask(with: url){
-            (data,response,error) in
-            if error != nil{
-                print("error")
-                return
-            }
-            DispatchQueue.main.async {
-                
-            }
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = cView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         cell.backgroundColor = UIColor.white
         
         //URL Üzerinden image açmak.
-        let url = URL(string: burak[indexPath.row])
+        let abcd = String((indexPath.row*2) + 1)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
+        let url = URL(string: kitapResim + abcd)
         URLSession.shared.dataTask(with: url!){
             (data,response,error) in
             if error != nil{
@@ -140,7 +133,8 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
             cell2.backgroundColor = UIColor.white
             
             //URL Üzerinden image açmak.
-            let url = URL(string: burak[indexPath.row])
+            let abcd = String((indexPath.row*2) + 1)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
+            let url = URL(string: kitapResim + abcd)
             URLSession.shared.dataTask(with: url!){
                 (data,response,error) in
                 if error != nil{
@@ -159,7 +153,8 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
             cell3.backgroundColor = UIColor.white
             
             //URL Üzerinden image açmak.
-            let url = URL(string: burak[indexPath.row])
+            let abcd = String((indexPath.row*2) + 1)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
+            let url = URL(string: kitapResim + abcd)
             URLSession.shared.dataTask(with: url!){
                 (data,response,error) in
                 if error != nil{
@@ -180,15 +175,32 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
     //    Seçili hücreye tıklandığında olacaklar.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (collectionView == cView){
-            doubleTapped(abc: indexPath.item)
+            if (indexPath.item == 0){  //Veriler 0'dan başlamıyor ama indexPath.item 0'dan başlıyor.
+                doubleTapped(abc: indexPath.item + 1)
+            }
+            else{
+                doubleTapped(abc: (indexPath.item*2)+1)
+            }
         }
         
         if (collectionView == cView2){
-            doubleTapped(abc: indexPath.item)
+            if (indexPath.item == 0){  //Veriler 0'dan başlamıyor ama indexPath.item 0'dan başlıyor.
+                doubleTapped(abc: indexPath.item + 1)
+            }
+            else{
+                doubleTapped(abc: (indexPath.item*2)+1)
+            }
+            
+            
         }
         
         if (collectionView == cView3){
-            doubleTapped(abc: indexPath.item)
+            if (indexPath.item == 0){  //Veriler 0'dan başlamıyor ama indexPath.item 0'dan başlıyor.
+                doubleTapped(abc: indexPath.item + 1)
+            }
+            else{
+                doubleTapped(abc: (indexPath.item*2)+1)
+            }
         }
     }
     
