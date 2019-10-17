@@ -182,10 +182,8 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Fer-Kq-kbF" firstAttribute="centerY" secondItem="U6j-0g-yYu" secondAttribute="centerY" id="TVw-Xs-EIg"/>
-                            <constraint firstItem="Fer-Kq-kbF" firstAttribute="leading" secondItem="YZb-4i-7gg" secondAttribute="leading" id="dNk-3P-NL2"/>
-                            <constraint firstItem="Fer-Kq-kbF" firstAttribute="centerX" secondItem="U6j-0g-yYu" secondAttribute="centerX" id="eMX-e2-Bly"/>
-                            <constraint firstItem="Fer-Kq-kbF" firstAttribute="trailing" secondItem="YZb-4i-7gg" secondAttribute="trailing" id="n47-f0-AVa"/>
+                            <constraint firstItem="Fer-Kq-kbF" firstAttribute="centerX" secondItem="U6j-0g-yYu" secondAttribute="centerX" id="2cU-A3-d3l"/>
+                            <constraint firstItem="Fer-Kq-kbF" firstAttribute="centerY" secondItem="U6j-0g-yYu" secondAttribute="centerY" id="E2T-DO-vPx"/>
                             <constraint firstItem="YZb-4i-7gg" firstAttribute="centerY" secondItem="U6j-0g-yYu" secondAttribute="centerY" id="sPI-gE-zEP"/>
                             <constraint firstItem="YZb-4i-7gg" firstAttribute="centerX" secondItem="U6j-0g-yYu" secondAttribute="centerX" id="yyx-me-J2q"/>
                         </constraints>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UyeGirisiVC: UIViewController {
+class UyeGirisiVC: UIViewController ,UITextFieldDelegate{
 
     @IBOutlet weak var epostaAdresi: UITextField!
     @IBOutlet weak var parola: UITextField!
@@ -19,6 +19,8 @@ class UyeGirisiVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        epostaAdresi.delegate = self
+        
         parola.layer.cornerRadius = 15
         parola.layer.borderColor = UIColor.lightGray.cgColor
         parola.layer.borderWidth = 1.0
@@ -36,7 +38,16 @@ class UyeGirisiVC: UIViewController {
         addLeftImage(txtField: parola, andImage: passwordImage!)
 
     }
-   
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //Textfield'ların başına şifre ve mail iconları eklemek için
     func addLeftImage(txtField:UITextField , andImage img : UIImage){
         let leftImageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: img.size.width, height: img.size.height))
         leftImageView.image = img
