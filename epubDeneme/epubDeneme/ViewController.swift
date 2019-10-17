@@ -18,7 +18,7 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var cView3: UICollectionView!
     let folioReader = FolioReader()
     
-    var burak : [String] = ["https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://www.booktopia.com.au/blog/wp-content/uploads/2018/12/the-arsonist.jpg","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217"]
+//    var burak : [String] = ["https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://www.booktopia.com.au/blog/wp-content/uploads/2018/12/the-arsonist.jpg","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217"]
     
     let kitapApi : String = "http://e-kitaplik.net/api/kitap/epub/"
     let kitapResim : String = "http://e-kitaplik.net/api/kitap/cover/"
@@ -32,12 +32,12 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if (collectionView == cView2){
-            return burak.count
+            return 80
         }
         if (collectionView == cView3){
-            return burak.count
+            return 80
         }
-        return burak.count
+        return 80
     }
     func showSavedEpub( fileName:String) {
         if #available(iOS 10.0, *) {
@@ -175,32 +175,15 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
     //    Seçili hücreye tıklandığında olacaklar.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (collectionView == cView){
-            if (indexPath.item == 0){  //Veriler 0'dan başlamıyor ama indexPath.item 0'dan başlıyor.
-                doubleTapped(abc: indexPath.item + 1)
-            }
-            else{
-                doubleTapped(abc: (indexPath.item*2)+1)
-            }
+            doubleTapped(abc: (indexPath.item*2)+1)
         }
         
         if (collectionView == cView2){
-            if (indexPath.item == 0){  //Veriler 0'dan başlamıyor ama indexPath.item 0'dan başlıyor.
-                doubleTapped(abc: indexPath.item + 1)
-            }
-            else{
-                doubleTapped(abc: (indexPath.item*2)+1)
-            }
-            
-            
+            doubleTapped(abc: (indexPath.item*2)+1)
         }
         
         if (collectionView == cView3){
-            if (indexPath.item == 0){  //Veriler 0'dan başlamıyor ama indexPath.item 0'dan başlıyor.
-                doubleTapped(abc: indexPath.item + 1)
-            }
-            else{
-                doubleTapped(abc: (indexPath.item*2)+1)
-            }
+            doubleTapped(abc: (indexPath.item*2)+1)
         }
     }
     
