@@ -52,7 +52,6 @@
                                 </state>
                                 <connections>
                                     <action selector="oturumAc:" destination="0EW-Zt-byt" eventType="touchUpInside" id="iE3-tf-7PM"/>
-                                    <segue destination="DVb-EC-zXM" kind="show" id="sMR-eS-No9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSn-PW-XNo">
@@ -123,6 +122,7 @@
                         <outlet property="epostaAdresi" destination="UVu-ts-xwV" id="X5v-tu-8HZ"/>
                         <outlet property="oturumAc" destination="KKR-Cu-8GY" id="G40-qb-Suu"/>
                         <outlet property="parola" destination="fKZ-HT-eko" id="AZE-iQ-5bm"/>
+                        <segue destination="DVb-EC-zXM" kind="show" identifier="girisYaptin" id="VK4-Ev-Hin"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hfz-aD-RLh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
