@@ -24,20 +24,20 @@ class UyeGirisiVC: UIViewController ,UITextFieldDelegate{
         }
         else if(epostaAdresi.text!.count > 1){
             let isEmailAddressValid =  isValidEmail(testStr: epostaAdresi.text!)
-                       if ( !isEmailAddressValid ){
-                           let alert = UIAlertController(title: "Mail Adresi", message: "Else Geçersiniz mail", preferredStyle: .alert)
-                           let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
-                           alert.addAction(okButton)
-                           self.present(alert, animated: true, completion: nil)
-                       }
-        
-        else if (parola.text!.count < 1){
-            let alert = UIAlertController(title: "Uyarı", message: "Lütfen parolayı giriniz", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
-            alert.addAction(okButton)
-            self.present(alert, animated: true, completion: nil)
-        }
-        
+            if ( !isEmailAddressValid ){
+                let alert = UIAlertController(title: "Mail Adresi", message: "Else Geçersiniz mail", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+                
+            else if (parola.text!.count < 1){
+                let alert = UIAlertController(title: "Uyarı", message: "Lütfen parolayı giriniz", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+            
         }
         
         let parameters = ["email": epostaAdresi.text as Any, "sifre": parola.text as Any] as [String : Any]
@@ -80,6 +80,7 @@ class UyeGirisiVC: UIViewController ,UITextFieldDelegate{
                     let decoder = JSONDecoder()
                     let gitData = try decoder.decode(myData.self, from: data)
                     if(gitData.isSuccess! == true){
+                        
                         DispatchQueue.main.async(){
                             self.performSegue(withIdentifier: "girisYaptin", sender: self)
                         }
@@ -101,11 +102,11 @@ class UyeGirisiVC: UIViewController ,UITextFieldDelegate{
     }
     
     //Email adresinin uyumlu olup olmadığını denetleyen fonksiyon
-       func isValidEmail(testStr:String) -> Bool {
-           let emailRegEx = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{1,4}$"
-           let emailTest = NSPredicate(format:"SELF MATCHES[c] %@", emailRegEx)
-           return emailTest.evaluate(with: testStr)
-       }
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{1,4}$"
+        let emailTest = NSPredicate(format:"SELF MATCHES[c] %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
