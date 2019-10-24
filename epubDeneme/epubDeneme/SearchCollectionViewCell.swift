@@ -11,4 +11,8 @@ import UIKit
 class SearchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var searchImage: UIImageView!
     
+    override func awakeFromNib() {
+        self.searchImage.layer.cornerRadius = 50
+    }
+
 }

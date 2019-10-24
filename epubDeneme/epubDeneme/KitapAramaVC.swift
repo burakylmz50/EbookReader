@@ -31,8 +31,8 @@ struct searchBarJson : Codable {
     let data : [Data3]?
 }
 
-class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource{
-
+class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionViewDataSource , UITextFieldDelegate{
+    
     @IBOutlet weak var arananKelime: UITextField!
     @IBOutlet weak var cViewSearch: UICollectionView!
     @IBAction func kelimeAramaBtn(_ sender: Any) {
@@ -42,10 +42,39 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
     let kitapApi : String = "http://e-kitaplik.net/api/kitap/epub/"
     var data1 = [Data3]()
     let folioReader = FolioReader()
+    
+    //Search Bar sayfasına girildiği zaman klavyenin otomatik olarak açılması.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        arananKelime.becomeFirstResponder()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        arananKelime.delegate = self
+        configureTapGesture()
+        arananKelime.clearButtonMode = .always
+        arananKelime.clearButtonMode = .whileEditing
+        
+        let emailImage = UIImage(named: "search")
+        addLeftImage(txtField: arananKelime, andImage: emailImage!)
     }
     
+    //Textfield'ların başına şifre ve mail iconları eklemek için
+    func addLeftImage(txtField:UITextField , andImage img : UIImage){
+        let leftImageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: img.size.width, height: img.size.height))
+        leftImageView.image = img
+        txtField.leftView = leftImageView
+        txtField.leftViewMode = .always
+    }
+    
+    //Text field klavye açıkken boşluğa tıklanınca klavyenin kapanması.
+    private func configureTapGesture(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(KitapAramaVC.handleTap))
+        view.addGestureRecognizer(tapGesture)
+    }
+    @objc func handleTap(){
+        view.endEditing(true)
+    }
     func arama(aranacakKelime : String){
         
         URLSession.shared.dataTask(with: URL(string: "http://e-kitaplik.net/api/kitap/search?keyword=" + aranacakKelime)!) { (data, res, err) in
@@ -98,11 +127,11 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
                 cell.searchImage.image = UIImage(data : data!)
             }
         }.resume()
-        print(data1[indexPath.row])
+        
         
         return cell
     }
-        func showSavedEpub( fileName:String) {
+    func showSavedEpub( fileName:String) {
         if #available(iOS 10.0, *) {
             do {
                 let docURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
@@ -173,8 +202,17 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+        
         doubleTapped(abc: (data1[indexPath.row].id!))
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        arama(aranacakKelime: arananKelime.text!)
+        return true
     }
     
 }
