@@ -35,9 +35,8 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
     
     @IBOutlet weak var arananKelime: UITextField!
     @IBOutlet weak var cViewSearch: UICollectionView!
-    @IBAction func kelimeAramaBtn(_ sender: Any) {
-        arama(aranacakKelime: arananKelime.text!)
-    }
+    
+
     
     let kitapApi : String = "http://e-kitaplik.net/api/kitap/epub/"
     var data1 = [Data3]()
@@ -56,6 +55,7 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
         arananKelime.clearButtonMode = .whileEditing
         
         let emailImage = UIImage(named: "search")
+        
         addLeftImage(txtField: arananKelime, andImage: emailImage!)
     }
     
@@ -74,6 +74,9 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
     }
     @objc func handleTap(){
         view.endEditing(true)
+    }
+    func kitapArama(){
+        arama(aranacakKelime: arananKelime.text!)
     }
     func arama(aranacakKelime : String){
         
@@ -211,7 +214,7 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        arama(aranacakKelime: arananKelime.text!)
+        kitapArama()
         return true
     }
     

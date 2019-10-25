@@ -80,7 +80,6 @@ class UyeGirisiVC: UIViewController ,UITextFieldDelegate{
                     let decoder = JSONDecoder()
                     let gitData = try decoder.decode(myData.self, from: data)
                     if(gitData.isSuccess! == true){
-                        
                         DispatchQueue.main.async(){
                             self.performSegue(withIdentifier: "girisYaptin", sender: self)
                         }

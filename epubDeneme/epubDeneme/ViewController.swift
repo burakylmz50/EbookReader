@@ -133,7 +133,7 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
             cell2.backgroundColor = UIColor.white
             
             //URL Üzerinden image açmak.
-            let abcd = String((indexPath.row*2) + 1)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
+            let abcd = String((indexPath.row*2) + 81)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
             let url = URL(string: kitapResim + abcd)
             URLSession.shared.dataTask(with: url!){
                 (data,response,error) in
@@ -153,7 +153,7 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
             cell3.backgroundColor = UIColor.white
             
             //URL Üzerinden image açmak.
-            let abcd = String((indexPath.row*2) + 1)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
+            let abcd = String((indexPath.row*2) + 161)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
             let url = URL(string: kitapResim + abcd)
             URLSession.shared.dataTask(with: url!){
                 (data,response,error) in
@@ -179,11 +179,11 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
         }
         
         if (collectionView == cView2){
-            doubleTapped(abc: (indexPath.item*2)+1)
+            doubleTapped(abc: (indexPath.item*2)+81)
         }
         
         if (collectionView == cView3){
-            doubleTapped(abc: (indexPath.item*2)+1)
+            doubleTapped(abc: (indexPath.item*2)+161)
         }
     }
     
