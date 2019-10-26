@@ -60,6 +60,7 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
         let config = FolioReaderConfig()
         config.shouldHideNavigationOnTap = true
         config.scrollDirection = .horizontal
+        config.nightModeBackground = UIColor.red
         let folioReader = FolioReader()
         folioReader.presentReader(parentViewController: self, withEpubPath: bookPath, andConfig: config)
     }

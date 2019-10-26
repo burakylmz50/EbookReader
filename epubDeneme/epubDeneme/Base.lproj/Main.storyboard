@@ -11,7 +11,7 @@
         <!--Hesabım-->
         <scene sceneID="onp-g2-5iE">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="0EW-Zt-byt" customClass="UyeGirisiVC" customModule="epubDeneme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="0EW-Zt-byt" customClass="UyeGirisiVC" customModule="Kitaplık" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ULP-5f-Kx9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -198,7 +198,7 @@
         <!--Uye OlVC-->
         <scene sceneID="EXi-Lq-tZs">
             <objects>
-                <viewController id="FYi-6u-DhU" customClass="UyeOlVC" customModule="epubDeneme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FYi-6u-DhU" customClass="UyeOlVC" customModule="Kitaplık" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8aE-Th-ndp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -299,7 +299,7 @@
         <!--Kitap AramaVC-->
         <scene sceneID="VFZ-Jw-cCC">
             <objects>
-                <viewController id="50x-Rp-3Od" customClass="KitapAramaVC" customModule="epubDeneme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="50x-Rp-3Od" customClass="KitapAramaVC" customModule="Kitaplık" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b8c-TH-23S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -312,6 +312,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                <connections>
+                                    <action selector="arananKelime:" destination="50x-Rp-3Od" eventType="editingChanged" id="4b8-N8-cSQ"/>
+                                </connections>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1n5-L0-vLu">
                                 <rect key="frame" x="0.0" y="44" width="414" height="715"/>
@@ -323,7 +326,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="TdU-tw-KR5" customClass="SearchCollectionViewCell" customModule="epubDeneme" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="TdU-tw-KR5" customClass="SearchCollectionViewCell" customModule="Kitaplık" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SeY-P4-Mmn">
@@ -382,7 +385,7 @@
         <!--Kitaplık-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="epubDeneme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Kitaplık" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -400,7 +403,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="sRo-cM-ERj" customClass="CollectionViewCell" customModule="epubDeneme" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="sRo-cM-ERj" customClass="CollectionViewCell" customModule="Kitaplık" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1.5" width="106" height="147"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Tlo-tg-Dfg">
@@ -448,7 +451,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell2" id="AtY-ZB-Ezz" customClass="CollectionViewCell2" customModule="epubDeneme" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell2" id="AtY-ZB-Ezz" customClass="CollectionViewCell2" customModule="Kitaplık" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1.5" width="106" height="147"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LG4-nu-DXj">
@@ -496,7 +499,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell3" id="MWX-gd-58j" customClass="CollectionViewCell3" customModule="epubDeneme" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell3" id="MWX-gd-58j" customClass="CollectionViewCell3" customModule="Kitaplık" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1.5" width="106" height="147"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1Ss-d1-g52">

@@ -36,7 +36,13 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
     @IBOutlet weak var arananKelime: UITextField!
     @IBOutlet weak var cViewSearch: UICollectionView!
     
-
+    //textfield içine her karakter girildiğinde arama yapmak. *EditingChanged*
+    @IBAction func arananKelime(_ sender: Any) {
+        if(arananKelime.text!.count > 2){
+            arama(aranacakKelime: arananKelime.text!)
+        }
+    }
+    
     
     let kitapApi : String = "http://e-kitaplik.net/api/kitap/epub/"
     var data1 = [Data3]()
@@ -50,6 +56,7 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         arananKelime.delegate = self
+        self.hidesKeyboard()
         configureTapGesture()
         arananKelime.clearButtonMode = .always
         arananKelime.clearButtonMode = .whileEditing
@@ -79,8 +86,9 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
         arama(aranacakKelime: arananKelime.text!)
     }
     func arama(aranacakKelime : String){
-        
-        URLSession.shared.dataTask(with: URL(string: "http://e-kitaplik.net/api/kitap/search?keyword=" + aranacakKelime)!) { (data, res, err) in
+        //textfield içine girilen boşlukları siliyor.
+        let aranacakKelime2 = String(arananKelime.text!.filter {![" ", "\t", "\n"].contains($0)})
+        URLSession.shared.dataTask(with: URL(string: "http://e-kitaplik.net/api/kitap/search?keyword=" + aranacakKelime2)!) { (data, res, err) in
             if let _ = err {
                 return
             }
@@ -218,5 +226,17 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
         return true
     }
     
+    
 }
 
+//Boşluğa tıklayınca klavye kapanması.
+extension UIViewController{
+    func hidesKeyboard(){
+        let tap : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dissmissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dissmissKeyboard(){
+        view.endEditing(true)
+    }
+}
