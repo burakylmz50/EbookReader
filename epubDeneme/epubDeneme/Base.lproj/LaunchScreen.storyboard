@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uci-9y-a4f">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KitaplıkLogo_2" translatesAutoresizingMaskIntoConstraints="NO" id="uci-9y-a4f">
                                 <rect key="frame" x="20" y="246" width="374" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="khJ-z7-PZD"/>
@@ -37,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="300" height="65"/>
+        <image name="KitaplıkLogo_2" width="1200" height="300"/>
     </resources>
 </document>
