@@ -18,11 +18,13 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var cView3: UICollectionView!
     let folioReader = FolioReader()
     
-//    var burak : [String] = ["https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://www.booktopia.com.au/blog/wp-content/uploads/2018/12/the-arsonist.jpg","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217"]
+//    var burak : [String] = ["https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://www.booktopia.com.au/blog/wp-content/uploads/2018/12/the-arsonist.jpg","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazi ne.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217","https://s26162.pcdn.co/wp-content/uploads/2019/01/9781616208882.jpg","https://cdn.pastemagazine.com/www/system/images/photo_albums/best-book-covers-2019-so-far/large/bbc19holdstill.png?1384968217"]
     
-    let kitapApi : String = "http://e-kitaplik.net/api/kitap/epub/"
+    let kitapApi : String = "http://e-kitaplik.net/api/kitap/epub/"  //pagesize/30
     let kitapResim : String = "http://e-kitaplik.net/api/kitap/cover/"
-    
+    let burak : [Int] = [1,3,5,7,9,15,19,25,53,55]
+   let burak2 : [Int] = [57,59,61,81,83,85,87,89,91,93,101]
+     let burak3 : [Int] = [111,113,161,163,165,169,171,173,177,197,205]
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,12 +34,12 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if (collectionView == cView2){
-            return 80
+            return 10
         }
         if (collectionView == cView3){
-            return 80
+            return 10
         }
-        return 80
+        return 10
     }
     func showSavedEpub( fileName:String) {
         if #available(iOS 10.0, *) {
@@ -60,14 +62,15 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
         let config = FolioReaderConfig()
         config.shouldHideNavigationOnTap = true
         config.scrollDirection = .horizontal
-        config.nightModeBackground = UIColor.red
         let folioReader = FolioReader()
         folioReader.presentReader(parentViewController: self, withEpubPath: bookPath, andConfig: config)
+        self.removeSpinner()
     }
     
     
     //    Download
     func doubleTapped(abc : Int) {
+        self.showSpinner(onView: self.view)
         
         let abcd = String(abc) // indexPath.item ' ı kitapApi'sinin sonuna ekliyorum. URL olarak veriyorum.
         if let fileUrl = URL(string: kitapApi + abcd) {
@@ -116,7 +119,8 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
         cell.backgroundColor = UIColor.white
         
         //URL Üzerinden image açmak.
-        let abcd = String((indexPath.row*2) + 1)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
+//        let abcd = String((indexPath.row*2) + 1)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
+        let abcd = String(burak[indexPath.row])
         let url = URL(string: kitapResim + abcd)
         URLSession.shared.dataTask(with: url!){
             (data,response,error) in
@@ -134,7 +138,7 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
             cell2.backgroundColor = UIColor.white
             
             //URL Üzerinden image açmak.
-            let abcd = String((indexPath.row*2) + 81)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
+            let abcd = String(burak2[indexPath.row])  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
             let url = URL(string: kitapResim + abcd)
             URLSession.shared.dataTask(with: url!){
                 (data,response,error) in
@@ -154,7 +158,8 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
             cell3.backgroundColor = UIColor.white
             
             //URL Üzerinden image açmak.
-            let abcd = String((indexPath.row*2) + 161)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
+            let abcd = String(burak3[indexPath.row])
+//            let abcd = String((indexPath.row*2) + 1)  // Veriler 1-3-5.. diye gittiği için böyle yapıyorum.
             let url = URL(string: kitapResim + abcd)
             URLSession.shared.dataTask(with: url!){
                 (data,response,error) in
@@ -176,15 +181,16 @@ class ViewController: UIViewController ,UICollectionViewDelegate, UICollectionVi
     //    Seçili hücreye tıklandığında olacaklar.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (collectionView == cView){
-            doubleTapped(abc: (indexPath.item*2)+1)
+                  doubleTapped(abc: (burak[indexPath.row]))
+//            doubleTapped(abc: (indexPath.item*2)+1)
         }
         
         if (collectionView == cView2){
-            doubleTapped(abc: (indexPath.item*2)+81)
+            doubleTapped(abc: (burak2[indexPath.row]))
         }
         
         if (collectionView == cView3){
-            doubleTapped(abc: (indexPath.item*2)+161)
+            doubleTapped(abc: (burak3[indexPath.row]))
         }
     }
     

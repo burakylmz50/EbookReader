@@ -37,14 +37,16 @@ class UyeOlVC: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var uyeOl: UIButton!
     
     @IBAction func UyeOl(_ sender: Any) {
-        
+        self.showSpinner(onView: self.view)
         if(isimSoyisim.text!.count < 4){
+            self.removeSpinner()
             let alert = UIAlertController(title: "Uyarı", message: "İsim soyisim alanı boş bırakılmamalıdır.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
             alert.addAction(okButton)
             self.present(alert, animated: true, completion: nil)
         }
         else if(mailAdresi.text!.count < 1){
+             self.removeSpinner()
             let alert = UIAlertController(title: "Uyarı", message: "Mail adresi giriniz.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
             alert.addAction(okButton)
@@ -54,6 +56,7 @@ class UyeOlVC: UIViewController , UITextFieldDelegate{
         else if(mailAdresi.text!.count > 1){
             let isEmailAddressValid =  isValidEmail(testStr: mailAdresi.text!)
             if ( !isEmailAddressValid ){
+                 self.removeSpinner()
                 let alert = UIAlertController(title: "Mail Adresi", message: "Else Geçersiniz mail", preferredStyle: .alert)
                 let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
                 alert.addAction(okButton)
@@ -61,6 +64,7 @@ class UyeOlVC: UIViewController , UITextFieldDelegate{
             }
             else{
                 if(parola.text!.count < 6){
+                     self.removeSpinner()
                     let alert = UIAlertController(title: "Parola", message: "Parola en az 6 karakter içermelidir.", preferredStyle: .alert)
                     let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
                     alert.addAction(okButton)
@@ -68,6 +72,7 @@ class UyeOlVC: UIViewController , UITextFieldDelegate{
                 }
                     
                 else if(parola.text != parolaTekrari.text){
+                     self.removeSpinner()
                     let alert = UIAlertController(title: "Parola", message: "Parolalar uyuşmamaktadır.", preferredStyle: .alert)
                     let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
                     alert.addAction(okButton)
@@ -115,6 +120,7 @@ class UyeOlVC: UIViewController , UITextFieldDelegate{
                                 let gitData = try decoder.decode(myData.self, from: data)
                                 if(gitData.isSuccess! == true){
                                     DispatchQueue.main.async(){
+                                         self.removeSpinner()
                                         self.performSegue(withIdentifier: "uyeOldun", sender: self)
                                     }
                                 }

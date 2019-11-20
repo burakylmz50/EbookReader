@@ -22,6 +22,7 @@
 		6537A06E234F122E00312A63 /* CollectionViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6537A06D234F122E00312A63 /* CollectionViewCell2.swift */; };
 		6537A070234F123700312A63 /* CollectionViewCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6537A06F234F123700312A63 /* CollectionViewCell3.swift */; };
 		6537A074234F7E5E00312A63 /* DataParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6537A073234F7E5E00312A63 /* DataParse.swift */; };
+		6547265A2384985D00D606BE /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654726592384985D00D606BE /* ActivityIndicator.swift */; };
 		65C720152366361A00421438 /* SssVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C720142366361A00421438 /* SssVC.swift */; };
 		65C720172366383200421438 /* SifremiUnuttumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C720162366383200421438 /* SifremiUnuttumVC.swift */; };
 		65FB51C0236043080040B4F5 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FB51BF236043080040B4F5 /* SearchCollectionViewCell.swift */; };
@@ -69,6 +70,7 @@
 		6537A06D234F122E00312A63 /* CollectionViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell2.swift; sourceTree = "<group>"; };
 		6537A06F234F123700312A63 /* CollectionViewCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell3.swift; sourceTree = "<group>"; };
 		6537A073234F7E5E00312A63 /* DataParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParse.swift; sourceTree = "<group>"; };
+		654726592384985D00D606BE /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		65C720142366361A00421438 /* SssVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SssVC.swift; sourceTree = "<group>"; };
 		65C720162366383200421438 /* SifremiUnuttumVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SifremiUnuttumVC.swift; sourceTree = "<group>"; };
 		65FB51BF236043080040B4F5 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		6537A038234F05FB00312A63 /* epubDeneme */ = {
 			isa = PBXGroup;
 			children = (
+				65472658238497FA00D606BE /* Extension */,
 				6537A039234F05FB00312A63 /* AppDelegate.swift */,
 				6537A03B234F05FB00312A63 /* SceneDelegate.swift */,
 				6537A03D234F05FB00312A63 /* ViewController.swift */,
@@ -180,6 +183,14 @@
 				6537A05D234F05FF00312A63 /* Info.plist */,
 			);
 			path = epubDenemeUITests;
+			sourceTree = "<group>";
+		};
+		65472658238497FA00D606BE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				654726592384985D00D606BE /* ActivityIndicator.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +372,7 @@
 				6537A03E234F05FB00312A63 /* ViewController.swift in Sources */,
 				6535B31E235628A900E67C99 /* UyeOlVC.swift in Sources */,
 				65FB51C0236043080040B4F5 /* SearchCollectionViewCell.swift in Sources */,
+				6547265A2384985D00D606BE /* ActivityIndicator.swift in Sources */,
 				6537A03A234F05FB00312A63 /* AppDelegate.swift in Sources */,
 				6537A06E234F122E00312A63 /* CollectionViewCell2.swift in Sources */,
 				6537A074234F7E5E00312A63 /* DataParse.swift in Sources */,
@@ -544,13 +556,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3LF4873CGF;
+				DEVELOPMENT_TEAM = 6VT9FNQ786;
 				INFOPLIST_FILE = epubDeneme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.epubDeneme;
+				MARKETING_VERSION = 1.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.epubDeneme66;
 				PRODUCT_NAME = "Kitaplık";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -563,13 +576,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3LF4873CGF;
+				DEVELOPMENT_TEAM = 6VT9FNQ786;
 				INFOPLIST_FILE = epubDeneme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.epubDeneme;
+				MARKETING_VERSION = 1.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.epubDeneme66;
 				PRODUCT_NAME = "Kitaplık";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

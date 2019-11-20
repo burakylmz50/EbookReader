@@ -15,8 +15,9 @@ class UyeGirisiVC: UIViewController ,UITextFieldDelegate{
     @IBOutlet weak var oturumAc: UIButton!
     
     @IBAction func oturumAc(_ sender: AnyObject) {
-        
+        self.showSpinner(onView: self.view)
         if(epostaAdresi.text!.count < 1){
+            self.removeSpinner()
             let alert = UIAlertController(title: "Uyarı", message: "Mail adresi giriniz.", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
             alert.addAction(okButton)
@@ -25,6 +26,7 @@ class UyeGirisiVC: UIViewController ,UITextFieldDelegate{
         else if(epostaAdresi.text!.count > 1){
             let isEmailAddressValid =  isValidEmail(testStr: epostaAdresi.text!)
             if ( !isEmailAddressValid ){
+                  self.removeSpinner()
                 let alert = UIAlertController(title: "Mail Adresi", message: "Else Geçersiniz mail", preferredStyle: .alert)
                 let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
                 alert.addAction(okButton)
@@ -32,6 +34,7 @@ class UyeGirisiVC: UIViewController ,UITextFieldDelegate{
             }
                 
             else if (parola.text!.count < 1){
+                  self.removeSpinner()
                 let alert = UIAlertController(title: "Uyarı", message: "Lütfen parolayı giriniz", preferredStyle: .alert)
                 let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
                 alert.addAction(okButton)
@@ -81,11 +84,13 @@ class UyeGirisiVC: UIViewController ,UITextFieldDelegate{
                     let gitData = try decoder.decode(myData.self, from: data)
                     if(gitData.isSuccess! == true){
                         DispatchQueue.main.async(){
+                              self.removeSpinner()
                             self.performSegue(withIdentifier: "girisYaptin", sender: self)
                         }
                     }
                     else{
                         DispatchQueue.main.async(){
+                              self.removeSpinner()
                             let alert = UIAlertController(title: "Uyarı", message: gitData.formMessage, preferredStyle: .alert)
                             let okButton = UIAlertAction(title: "Tamam", style: .cancel, handler: nil)
                             alert.addAction(okButton)

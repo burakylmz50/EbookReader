@@ -88,7 +88,11 @@ class KitapAramaVC: UIViewController ,UICollectionViewDelegate, UICollectionView
     func arama(aranacakKelime : String){
         //textfield içine girilen boşlukları siliyor.
         let aranacakKelime2 = String(arananKelime.text!.filter {![" ", "\t", "\n"].contains($0)})
-        URLSession.shared.dataTask(with: URL(string: "http://e-kitaplik.net/api/kitap/search?keyword=" + aranacakKelime2)!) { (data, res, err) in
+        let searchApiURL: String = "http://e-kitaplik.net/api/kitap/search?keyword="
+         let searchURL : String = aranacakKelime2
+        let asbc : String = searchApiURL + aranacakKelime2
+       
+        URLSession.shared.dataTask(with: URL(string: asbc.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!) { (data, res, err) in
             if let _ = err {
                 return
             }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0EW-Zt-byt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0EW-Zt-byt">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,20 +19,12 @@
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5ql-gp-8C5">
                                 <rect key="frame" x="20" y="124" width="374" height="661"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">1️⃣Kitaplık Nedir?
+                                <string key="text">1️⃣Kitaplık Nedir?
 Kitaplık; internet bağlantısı olan binlerce cihazda son çıkan kitaplar, çok okunan kitaplar ve daha fazlasını içeren geniş bir arşiv hizmeti sunan bir yayın hizmetidir.
 
 2️⃣Kitaplığın maliyeti nedir?
-Kitaplık’ı akıllı telefonunuz ve tabletinizden düşük bir sabit aylık ücretle okuyun. Aylık 9.99 TL ücretle sahip olabilirsiniz. Ekstra maliyet ve sözleşme yok.
-
-3️⃣Nasıl iptal ederim?
-Kitaplık esnektir. Sinir bozucu hiçbir taahhütü yoktur. İstediğiniz zaman başlatın veya durdurun.
-
-4️⃣Kitaplık’ta ne okuyabilirim?
-Kitaplık,roman,psikoloji,konuşmalar,tarih,felsefe,eğitim ve daha fazlasından oluşan kapsamlı bir kütüphaneye sahiptir.
-
-5️⃣Ücretsiz deneme nasıl işler?
-Bizden 2 tane kitap okuyun ! Beğendiyseniz eğer uygulama içi satın alma üzerinden premium üyelik satın alabilirsiniz.</mutableString>
+Kitaplık’ı akıllı telefonunuz ve tabletinizden ücretsiz bir şekilde okuyabilirsiniz.
+</string>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -145,7 +137,7 @@ Bizden 2 tane kitap okuyun ! Beğendiyseniz eğer uygulama içi satın alma üze
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                 <state key="normal" title="Parolanı mı Unuttun?">
-                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="X0y-yc-aM7" kind="show" id="ugE-zp-rhG"/>
@@ -469,9 +461,6 @@ Bizden 2 tane kitap okuyun ! Beğendiyseniz eğer uygulama içi satın alma üze
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
-                                <connections>
-                                    <action selector="arananKelime:" destination="50x-Rp-3Od" eventType="editingChanged" id="4b8-N8-cSQ"/>
-                                </connections>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1n5-L0-vLu">
                                 <rect key="frame" x="0.0" y="44" width="414" height="715"/>
@@ -531,7 +520,7 @@ Bizden 2 tane kitap okuyun ! Beğendiyseniz eğer uygulama içi satın alma üze
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="0F1-iV-S4e"/>
                     <connections>
-                        <outlet property="arananKelime" destination="zck-Ih-uQb" id="DGP-Dt-3g0"/>
+                        <outlet property="arananKelime" destination="zck-Ih-uQb" id="pU7-w0-gAI"/>
                         <outlet property="cViewSearch" destination="1n5-L0-vLu" id="YEP-LN-j9y"/>
                     </connections>
                 </viewController>
@@ -771,6 +760,6 @@ Bizden 2 tane kitap okuyun ! Beğendiyseniz eğer uygulama içi satın alma üze
         <image name="arkaplan" width="736" height="1309"/>
         <image name="book.fill" catalog="system" width="64" height="50"/>
         <image name="closeicon60px" width="60" height="60"/>
-        <image name="person.crop.circle.fill" catalog="system" width="64" height="62"/>
+        <image name="person.crop.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>

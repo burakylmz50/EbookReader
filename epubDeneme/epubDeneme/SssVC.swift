@@ -14,6 +14,8 @@ class SssVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    // Adam olacaktın burak ıbnesı
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         soruList.layer.cornerRadius = 20
